@@ -1,10 +1,26 @@
 <template>
   <div class="home">
-    <div class="section">
+    <div id="header" class="section header-fixed">
       <b-field style="width:100%;">
           <b-input 
               style="width:100%;"
               placeholder="文字を入力してください"
+              type="is-info"
+              v-model="text"
+              >
+          </b-input>
+      </b-field>
+      <div class="buttons">
+          <b-button type="is-info" @click="speech(text)">まとめて読み上げる</b-button>
+          <b-button outlined type="is-warning" @click="deleteEndCharacter">一文字消去する</b-button>
+          <b-button outlined type="is-warning" @click="text=''">まとめて消去する</b-button>
+      </div>
+    </div>
+
+    <div id="dummy" class="section">
+      <b-field style="width:100%;">
+          <b-input 
+              style="width:100%;"
               type="is-info"
               v-model="text"
               >
@@ -102,8 +118,21 @@ export default {
 
   created(){
     this.checkBrowserIsSupported()
+  },
+
+  mounted(){
+    let client_h = document.getElementById('header').clientHeight;
   }
-
-
 }
 </script>
+<style>
+div.header-fixed
+{
+    position: fixed;            /* ヘッダーの固定 */
+    top: 0px;                   /* 位置(上0px) */
+    left: 0px;                  /* 位置(右0px) */
+    width: 100%;                /* 横幅100%　*/
+    background-color:white;     /* 背景色(黒) */
+    z-index: 9998;
+}
+</style>
