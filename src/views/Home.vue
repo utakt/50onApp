@@ -85,7 +85,18 @@ export default {
       const uttr = new SpeechSynthesisUtterance(text)
       // 発言を再生 (発言キューに発言を追加)
       speechSynthesis.speak(uttr)
+    },
+
+    checkBrowserIsSupported(){
+      if ('speechSynthesis' in window) {
+      } else {
+        window.alert("このブラウザは音声合成に対応していません。 Google Chromeをお使いください。")
+      }
     }
+  },
+
+  created(){
+    this.checkBrowserIsSupported()
   }
 
 
