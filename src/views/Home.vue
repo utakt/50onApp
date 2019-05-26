@@ -12,7 +12,8 @@
       </b-field>
       <div class="buttons">
           <b-button type="is-info" @click="speech(text)">まとめて読み上げる</b-button>
-          <b-button outlined type="is-warning" @click="text=''">消去する</b-button>
+          <b-button outlined type="is-warning" @click="deleteEndCharacter">一文字消去する</b-button>
+          <b-button outlined type="is-warning" @click="text=''">まとめて消去する</b-button>
       </div>
     </div>
 
@@ -85,6 +86,10 @@ export default {
       const uttr = new SpeechSynthesisUtterance(text)
       // 発言を再生 (発言キューに発言を追加)
       speechSynthesis.speak(uttr)
+    },
+
+    deleteEndCharacter(){
+      this.text = this.text.slice(0, -1)
     },
 
     checkBrowserIsSupported(){
